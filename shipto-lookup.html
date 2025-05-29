@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>McKesson Ship To Lookup</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 94, 184, 0.15);
+    }
+
+    h1 {
+      text-align: center;
+      color: #005EB8;
+      margin-bottom: 20px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 15px;
+      max-width: 140px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+
+    .result {
+      background: #eaf4ff;
+      padding: 15px;
+      border-left: 4px solid #005EB8;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .result strong {
+      color: #003F7D;
+    }
+
+    .not-found {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 12px;
+      color: #777;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/McKesson_logo_2018.svg/512px-McKesson_logo_2018.svg.png" class="logo" alt="McKesson Logo">
+    <h1>Ship To Lookup</h1>
+    <input type="text" id="searchBox" placeholder="Enter Ship To #..." oninput="searchShipTo()">
+
+    <div class="result" id="resultBox">
+      <p><strong>Ship To #:</strong> <span id="shipNum"></span></p>
+      <p><strong>Account Name:</strong> <span id="accountName"></span></p>
+    </div>
+    <div class="not-found" id="notFound"></div>
+
+    <div class="footer">Will Kahn | McKesson Medical-Surgical | Account Executive</div>
+  </div>
+
+  <script>
+    const data = {
+      "3028849": "GASTON, DAVID, MD",
+      "402848": "FROST, JIM, MD",
+      "3577869": "FROST, JIM M.D.",
+      "4317179": "House Keeping",
+      "4339256": "Tara Andrisin, P.A.",
+      "402825": "WELCH, KEVIN MD",
+      "5017418": "KIMURA STEPHEN MD",
+      "402824": "FROST, JIM MD",
+      "3028190": "Hash, Kendall Md",
+      "3808251": "Stillman, Eric, M.D.",
+      "402837": "INDIA ASHTON ROUNTREE, MD",
+      "4093427": "Wells, Christina R., P.A.C",
+      "3345344": "Lowery, Gerald Md",
+      "2351489": "NAVAS, LUIS MD",
+      "4431852": "MEDICAL CENTER CLINIC DERMATOLOGY",
+      "402819": "SARAH TOUCHSTONE APRN",
+      "402842": "KESLER, ROMAN MD",
+      "4127441": "MEDICAL RESEARCH 10TH FLOOR",
+      "402850": "FROST, JIM MD",
+      "402832": "POWELL, RON MD",
+      "402851": "VANDENBERG, MICHAEL, MD",
+      "402844": "SUELFLOW, JERRY MD",
+      "3028853": "MACNEAL, ROBERT M.D.",
+      "4143208": "LURATE JR, ROBERT BARRY, M.D.",
+      "402826": "ROBERT MACNEAL, M.D.",
+      "402869": "KIMURA, STEPHEN MD",
+      "3726152": "Neurology - Eeg",
+      "4074616": "JASON BRYANT, PAC",
+      "402846": "DEWEY, DONALD, MD",
+      "4044614": "Hajnik, Christopher A., M.D.",
+      "3952153": "Medical Center Clinic Eye Institute",
+      "402820": "KERN, MATTHEW MD",
+      "775075": "Vandenberg, Michale Md",
+      "402863": "Mcc Transporters",
+      "3028844": "MCMARTIN, SCOTT, M.D.",
+      "4581818": "ANDREW J. VAN BROCKLIN, DO.",
+      "4724814": "MEDICAL CENTER CLINIC",
+      "402830": "JONES, DEREK MD",
+      "3999376": "HISTOLOGY LAB",
+      "3716624": "Medical Center Clinic Facilities",
+      "402845": "WERRELL, JENNIFER MD",
+      "4140144": "WELCH MD, KEVIN",
+      "3995530": "MELISSA ROBERTSON P.A.",
+      "402855": "VANDENBERG, MICHAEL M.D.",
+      "402836": "Medical Center Clinic",
+      "4317457": "HOUSEKEEPING MCC",
+      "3699029": "Covington Orthopedic Spine Center"
+    };
+
+    function searchShipTo() {
+      const input = document.getElementById("searchBox").value.trim();
+      const resultBox = document.getElementById("resultBox");
+      const notFound = document.getElementById("notFound");
+
+      if (data[input]) {
+        document.getElementById("shipNum").innerText = input;
+        document.getElementById("accountName").innerText = data[input];
+        resultBox.style.display = "block";
+        notFound.innerText = "";
+      } else {
+        resultBox.style.display = "none";
+        notFound.innerText = input ? "No matching account found." : "";
+      }
+    }
+  </script>
+</body>
+</html>
